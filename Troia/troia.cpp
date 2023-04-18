@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
-
+// https://olimpiada.ic.unicamp.br/pratique/p2/2013/f2/troia
 
 class Graph {
 

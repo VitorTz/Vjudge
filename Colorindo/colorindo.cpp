@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+// https://olimpiada.ic.unicamp.br/pratique/p1/2011/f2/colorir/
 
 
 int linhas, colunas;
