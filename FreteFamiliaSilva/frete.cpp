@@ -8,9 +8,17 @@ typedef std::pair<int, std::pair<int, int>> estrada;
 std::vector<estrada> arestas;
 
 
-int mst(std::vector<estrada>& v) {
-    
+int mst(std::vector<estrada>& v, int N) {
+    std::vector<int> id (N);
+    // Union find
+    for (int i = 0; i < N; i++) {
+        id[i] = i;
+    }
 
+    int res = 0;
+    for (int i = 0; i < v.size(); i++) {
+
+    }
 }
 
 
@@ -26,7 +34,7 @@ int main() {
     }
 
     std::sort(arestas.begin(), arestas.end());
-    std::cout << mst(arestas) << '\n';
+    std::cout << mst(arestas, E) << '\n';
 
     return EXIT_SUCCESS;
 }
