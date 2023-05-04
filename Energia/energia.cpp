@@ -12,7 +12,7 @@ vector<bool> mk;
 
 /**
  * Recebe as adjacencias presentes no grafo
- * @param E quantidade de adjacencias
+ * @param E quantidade de adjacenciasz
 */
 void recebeEntrada(int E) {
     for (int i = 0; i < E; i++) {

@@ -10,6 +10,7 @@
 using namespace std;
 
 vector<string> m;
+vector<vector<bool>> mk;
 vector<pair<int, int>> vizinhos = {
     {0, 1},
     {0, -1},
@@ -23,6 +24,7 @@ void recebeEntrada() {
     cin >> linhas >> F;
     colunas = linhas;
     m = vector<string> (linhas);
+    mk = vector<vector<bool>> (linhas, vector<bool> (linhas, false));
     for (int i = 0; i < linhas; i++)
         cin >> m[i];
 }
@@ -33,7 +35,7 @@ void simulaCaminhoLava() {
     list<pair<int, int>> queue;
     queue.push_back({START_X, START_Y});
     m[START_X][START_Y] = '*';
-
+    mk[START_X][START_Y] = true;
     while (!queue.empty()) {
         pair<int, int> p =  queue.front(); queue.pop_front();
         int i, j;
@@ -47,6 +49,7 @@ void simulaCaminhoLava() {
                 m[i][j] - '0' <= F
             ) {
                 m[i][j] = '*';
+                mk[i][j] = true;
                 queue.push_back({i, j});
             }
         }
