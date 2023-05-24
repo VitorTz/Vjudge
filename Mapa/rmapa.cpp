@@ -1,15 +1,49 @@
-// https://olimpiada.ic.unicamp.br/pratique/p2/2014/f1/copa/
+// https://olimpiada.ic.unicamp.br/pratique/p2/2011/f2/rmapa/
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <queue>
 
 
-enum class TipoEstrada {
-    Ferrovia,
-    Rodovia
-};
+class Edge {
+    
+    private:
+        int v, u;
+        double peso;
+    
+    public:
 
+        Edge(int v, int u, double peso) {
+            this->v = v;
+            this->u = u;
+            this->peso = peso;
+        }
+
+        int getV() {
+            return v;
+        }
+
+        int getU() {
+            return u;
+        }
+
+        int outro(int ve) {
+            if (ve == u) return v;
+            return u;
+        }
+
+        double getPeso() const {
+            return peso;
+        }
+
+        friend bool operator< (const Edge& l, const Edge& r) {
+            return l.getPeso() > r.getPeso();
+        }
+
+        std::string toString() {
+            return '{' + std::to_string(peso) + ", {" + std::to_string(v) + ", "  + std::to_string(u) + "}}";
+        }            
+        
+};
 
 class UnionFind {
 
@@ -52,67 +86,6 @@ class UnionFind {
 };
 
 
-class Edge {
-    
-    private:
-        int u, v;
-        double peso;
-        TipoEstrada tipoEstrada;
-    
-    public:
-
-        Edge(int u, int v, double peso, TipoEstrada tipoEstrada) {
-            this->u = u;
-            this->v = v;
-            this->tipoEstrada = tipoEstrada;
-            this->peso = peso;
-        }
-
-        int getV() {
-            return v;
-        }
-
-        int getU() {
-            return u;
-        }
-
-        TipoEstrada getTipoEstrada() const {
-            return this->tipoEstrada;
-        }
-
-        std::string getTipoEstradaString() const {
-            if (this->tipoEstrada == TipoEstrada::Ferrovia) 
-                return "Ferrovia";
-            return "Rodovia";
-        }
-
-        int outro(int ve) {
-            if (ve == u) return v;
-            return u;
-        }
-
-        double getPeso() const {
-            return peso;
-        }
-
-        friend bool operator< (const Edge& l, const Edge& r) {
-            TipoEstrada tl = l.getTipoEstrada();
-            TipoEstrada tr = r.getTipoEstrada();
-            if (tl == tr) return l.getPeso() > r.getPeso();
-            if (tr == TipoEstrada::Ferrovia) return true;
-            return false;
-        }
-
-        std::string toString() {
-            return '{' + 
-            std::to_string(peso) + 
-            ", {" + std::to_string(v) + 
-            ", "  + std::to_string(u) + 
-            "} " + this->getTipoEstradaString() + "}";
-        }            
-};
-
-
 class KruskalMST {
 
     private:
@@ -120,7 +93,7 @@ class KruskalMST {
         double peso;  // Peso total da mst
     
     public:
-        KruskalMST(int vv, std::vector<Edge>& arestas) {
+        KruskalMST(int vv, std::vector<Edge> arestas) {
             this->peso = 0.;
             
             std::priority_queue<Edge> pq;
@@ -161,29 +134,19 @@ class KruskalMST {
 };
 
 
+
 int main() {
-    int qtdCidades, qtdFerrovias, qtdRodovias;
-    std::cin >> qtdCidades >> qtdFerrovias >> qtdRodovias;
+    int qtdCidades, qtdRodovias;
+    std::cin >> qtdCidades >> qtdRodovias;
     
     std::vector<Edge> arestas;
-
-    // Recebe as ferrovias
-    for (int i = 0; i < qtdFerrovias; i++) {
+    for (int i = 0; i < qtdRodovias; i++) {
         int u, v, peso;
         std::cin >> u >> v >> peso;
         u--; v--;
-        arestas.push_back(Edge(u, v, peso, TipoEstrada::Ferrovia));
-    }
-    
-    // Recebe as Rodovias
-    for (int i = 0; i < qtdRodovias; i++) {
-        int u, v, peso; 
-        std::cin >> u >> v >> peso;
-        u--; v--;
-        arestas.push_back(Edge(u, v, peso, TipoEstrada::Rodovia));
+        arestas.push_back(Edge(u, v, peso));
     }
 
     std::cout << KruskalMST(qtdCidades, arestas).getPeso() << '\n';
-
-    return 0;
+    
 }

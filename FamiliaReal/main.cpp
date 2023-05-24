@@ -1,5 +1,6 @@
 // https://olimpiada.ic.unicamp.br/pratique/p2/2015/f1/real/
 #include <iostream>
+#include <cmath>
 #include <vector>
 
 
@@ -48,9 +49,13 @@ int main() {
 
     for (int k = 1; k <= M; k++) {
         if (totalGeracao[k] == 0) break;
-        std::cout << foramGeracao[k] / (float) totalGeracao[k] * 100.0 << '\n';
-        // std::cout << 100.0 * foramGeracao[k] / totalGeracao[k] * 100.0 << '\n';
+        // std::cout << foramGeracao[k] / (float) totalGeracao[k] * 100.0 << '\n';
+        std::cout.precision(4);
+        double n = 100. * foramGeracao[k] / (double) totalGeracao[k];
+        std::cout << n << ' ';
     }
+
+    std::cout << '\n';
         
     return 0;
 }
