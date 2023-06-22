@@ -13,6 +13,7 @@ private:
     vector<bool> onStack;
     
     bool dfs(int u) {
+        this->mk[u] = true;
         this->onStack[u] = true;
         for (int v : this->adjs[u]) {
             if (!this->mk[v]) {
