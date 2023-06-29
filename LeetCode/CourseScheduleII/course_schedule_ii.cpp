@@ -15,11 +15,12 @@ private:
     vector<int> postOrder;
     bool temCiclo;
     
-    bool dfs(int u) {
+    void dfs(int u) {
         this->mk[u] = true;
         this->onStack[u] = true;
         for (int v : this->adjs[u]) {
-            if (this->temCiclo) return;
+            if (this->temCiclo) 
+                return;
             if (!this->mk[v])
                 this->dfs(v);
             else if (this->onStack[v]) {
@@ -62,15 +63,16 @@ public:
 int main() {
 
     Solution s;
-    int numCourses = 5;
+    int numCourses = 4;
     vector<vector<int>> preRequisites = {
         {1, 0},
-        {2, 1},
-        {4, 2},
-        {0, 4},
-        {3, 1}
+        {2, 0},
+        {3, 1},
+        {3, 2}
     };
     vector<int> postOrder = s.findOrder(numCourses, preRequisites);
-
+    for (int n : postOrder)
+        std::cout << n << ' ';
+    std::cout << '\n';
     return 0;
 }
