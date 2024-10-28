@@ -1,0 +1,3 @@
+/home/vitor/Programs/Vjudge/build/CMakeFiles/VJudged.dir
+/home/vitor/Programs/Vjudge/build/CMakeFiles/edit_cache.dir
+/home/vitor/Programs/Vjudge/build/CMakeFiles/rebuild_cache.dir

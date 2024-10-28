@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/VJudged.dir/src/main.cpp.o -o VJudged 
