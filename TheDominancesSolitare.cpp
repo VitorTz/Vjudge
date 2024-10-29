@@ -6,8 +6,9 @@ int m;
 std::bitset<14> used;
 std::pair<int, int> pieces[14];
 
+
 bool findSolution(int size, std::pair<int, int> values) {
-	if(!size) {
+	if (!size) {
 		return (values.first == values.second);
     }
 	

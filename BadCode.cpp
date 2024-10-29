@@ -30,7 +30,7 @@ void dfs(int idx, std::string& cur, std::vector<std::pair<char, std::string>>& e
             dfs(idx + p.second.length(), cur, encode, t);
             cur.pop_back();
         }
-        if (cnt>= 100) return;
+        if (cnt >= 100) return;
     }
 }
 

@@ -1,9 +1,5 @@
 #include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <ctime>
-#include <cctype>
-#include <cmath>
+#include <array>
 
 
 int main(){
@@ -14,7 +10,7 @@ int main(){
 
 		int n, m;
 		int W[20];
-		bool DP[1001] = { false };
+		std::array<bool, 1001> DP{};
         
         std::cin >> n >> m;		
 		for (int i = 0; i < m; i++) {
