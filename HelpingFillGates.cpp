@@ -14,19 +14,18 @@ int main(void) {
 		index[c].push_back(i++);
     }
 
-	int q;
-	std::cin >> q;
+	int n;
+	std::cin >> n;
 
-	while(q--) {
+	while(n--) {
 		std::string str;
 		std::cin >> str;
 
 		int first = 0;
 		int last = -1;
-		bool matched = true;
-		int length = str.length();
+		bool matched = true;		
 
-		for(i = 0; i < length; ++i) {
+		for(i = 0; i < str.length(); ++i) {
 			std::vector<int>::iterator j = std::upper_bound(index[str[i]].begin(), index[str[i]].end(), last);
 			
 			if (j == index[str[i]].end()) {
