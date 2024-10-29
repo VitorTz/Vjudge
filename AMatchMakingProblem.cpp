@@ -1,36 +1,33 @@
-#include <algorithm>
 #include <iostream>
-#include <limits>
 
 
 int main() {
-    int n, m;
-    int numCases = 0;
-    int B[10005];
-    int S[10005];
+    int n, m, tc;
 
-    while (std::cin >> n >> m) {
-        
+    while (std::cin >> n >> m){
+
         if (n == 0 && m == 0) {
             break;
         }
 
-        int mn = std::numeric_limits<int>::max();
-        int i;
+        int threshold = 61;
+        int age;
 
-        for (i = 0; i < n; i++) {
-            std::cin >> B[i];
-            mn = std::min(mn, B[i]);
+        for (int i = 0; i < n; i++) {            
+            std::cin >> age;            
+            threshold = std::min(threshold, age);
         }
 
-        for (i = 0; i < m; i++) {
-            std::cin >> S[i];            
+        for (int i = 0; i < m; i++) {        
+            std::cin >> age;        
         }
 
+        std::cout << "Case " << ++tc << ':' << ' ';
+        
         if (n <= m) {
-            std::cout << "Case " << ':' << ++numCases << ' ' << '0' << '\n';            
+            std::cout << '0' << '\n';            
         } else {
-            std::cout << "Case " << ++numCases << ' ' << n - m << ' ' << mn << '\n';            
+            std::cout << n - m << ' ' << threshold << '\n';            
         }
     }
     return 0;

@@ -49,8 +49,8 @@ int main() {
         
         stones[n].second = false;
         stones[n].first = D;
-        hitStone[n] = false;
-        
-        std::cout << "Case " << t << ": " << calcule_min_dist() << '\n';
+        hitStone[n] = false;    
+        const int minD = calcule_min_dist();
+        std::cout << "Case " << t << ": " << minD << '\n';
     }
 }
