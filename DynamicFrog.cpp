@@ -53,4 +53,6 @@ int main() {
         const int minD = calcule_min_dist();
         std::cout << "Case " << t << ": " << minD << '\n';
     }
+    
+    return 0;
 }
