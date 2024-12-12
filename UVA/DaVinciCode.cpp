@@ -1,69 +1,61 @@
-#include <stdio.h>
-#include <math.h>
 #include <iostream>
-#include <string>
+#include <cstring>
+#include <cstdio>
+#include <map>
 #include <algorithm>
+#include <climits>
 
 
-int main() {
-    unsigned long long fib[100];
-	fib[0] = 1;
-	fib[1] = 1;
+std::map <int, int> m{};
 
-	for (int i = 2 ; i <= 50 ; i++) {
-		fib[i] = fib[i-1] + fib[i-2];
-    }
 
-    int tc;
-	std::cin >> tc;
-    
-    while(tc--) {
-    	int n ;
-    	std::cin >> n;
-    	
-    	unsigned long long ar[n + 10];
-        
-    	for (int i = 0 ; i < n ; i++) {
-            std::cin >> ar[i];
-        }
+int main() {	
+	int tc;
+	int n, lo, key, cind;
+	int e[110];
+	char str[110];
+	std::string s;
+	int id = 0;
+	m[1] = id++;
+	m[2] = id++;
 
-    	getchar();
-    	std::string str{};
-		
-		std::cin >> str;
- 
-    	std::string s ;
-    	for (int i = 0 ; i <= 50 ; i++) {
-    		s.push_back('*');
-        }
+	unsigned long long a = 1;
+	unsigned long long b = 2;
 
-    	int pos = 0;
-    	int j = 0;
-    	for (int i = 0; i < n ; i++) {
-    		for ( ; j < str.size() ; j++) {
-    			if (str[j] >= 'A' && str[j] <= 'Z') {
-    				for (int k = 1 ; k < 50 ; k++) {
-    					if (fib[k] == ar[i]) {
-    						pos = std::max(pos,k);
-    						s[k] = str[j];
-    						break;
-    					}
-    				}
-    				j++;
-    				break;
-    			}
-    		}
-    	}
-    	
-    	for (int i = 1; i <= pos ; i++ ) {
-    		if(s[i] == '*') {
-    			std::cout << " ";
-            } else {
-    			std::cout << s[i];
-            }
-    	}
-    	std::cout << "\n";
-    }
+	while(a + b < (unsigned long long) INT_MAX){
+		key = a + b;
+		m[key] = id++;
+		a = b;
+		b = key;
+	}
 
-    return 0;
+	std::cin >> tc;	
+
+	while(tc--) {
+		std::cin >> n;		
+		for(int i = 0; i < n; i++) {
+			std::cin >> e[i];			
+		}		
+		std::getline(std::cin,s);
+		std::getline(std::cin, s);
+		std::memset(str, ' ', sizeof str);
+		lo = 0;
+
+		int ind = -1;
+		int minind = 100;
+		for (int i = 0; i < s.size() && lo < n; i++) {
+			if(std::isupper(s[i])){
+				cind = m[e[lo++]];
+				str[cind] = s[i];
+				ind = std::max(ind, cind);
+				minind = std::min(cind, minind);
+			}
+		}
+
+		for(int i = 0; i <= ind;i++) {
+			std::cout << str[i];			
+		}
+		std::cout << '\n';
+	}
+	return 0;
 }
